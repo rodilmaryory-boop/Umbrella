@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoFounderAI - Your AI Co-founder for Business Success</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --secondary: #6366F1;
+            --accent: #F59E0B;
+            --accent-light: #FBBF24;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--dark-border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--accent);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(245, 158, 11, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Agents Section */
+        .agents {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .agent-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .agent-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .agent-features {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .agent-features li {
+            padding: 0.3rem 0;
+        }
+
+        .agent-features li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .how-it-works-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Use Cases Gallery */
+        .use-cases {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15);
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .use-case-arrow {
+            display: inline-block;
+            color: var(--accent);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+        }
+
+        .pricing-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-period {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-stars {
+            color: var(--accent-light);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+        }
+
+        .testimonial-role {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .final-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .agents,
+            .how-it-works,
+            .use-cases,
+            .pricing,
+            .testimonials {
+                padding: 3rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">CoFounderAI</div>
+            <ul class="nav-links">
+                <li><a href="#agents">AI Agents</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+            <button class="cta-button" onclick="scrollToSection('pricing')">Start Free Trial</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your <span class="highlight">AI Co-founder</span> for Success</h1>
+            <p>Meet your team of 5 intelligent AI agents working 24/7 to scale your business. Strategic planning, market research, customer analysis, and growth execution—all at your fingertips.</p>
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="scrollToSection('pricing')">Start Free Trial</button>
+                <button class="secondary-btn" onclick="alert('Watch demo coming soon!')">Watch Demo</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Founders</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$50M</div>
+                    <div class="stat-label">Revenue Generated</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Section -->
+    <section class="agents" id="agents">
+        <div class="section-title">
+            <h2>Meet Your AI Agent Team</h2>
+            <p>Five specialized AI agents working together to accelerate your business growth and decision-making</p>
+        </div>
+        <div class="agents-grid">
+            <div class="agent-card">
+                <div class="agent-icon">🎯</div>
+                <h3>Strategy Agent</h3>
+                <p>Develops comprehensive business strategies and competitive positioning</p>
+                <ul class="agent-features">
+                    <li>Market positioning</li>
+                    <li>Growth roadmaps</li>
+                    <li>Competitive analysis</li>
+                    <li>Go-to-market planning</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <div class="agent-icon">📊</div>
+                <h3>Analytics Agent</h3>
+                <p>Deep data insights and performance metrics for informed decisions</p>
+                <ul class="agent-features">
+                    <li>Real-time dashboards</li>
+                    <li>Trend analysis</li>
+                    <li>Predictive modeling</li>
+                    <li>KPI tracking</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <div class="agent-icon">👥</div>
+                <h3>Customer Agent</h3>
+                <p>Customer insights, feedback analysis, and retention strategies</p>
+                <ul class="agent-features">
+                    <li>Sentiment analysis</li>
+                    <li>Churn prediction</li>
+                    <li>Persona development</li>
+                    <li>NPS optimization</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <div class="agent-icon">💰</div>
+                <h3>Finance Agent</h3>
+                <p>Financial planning, burn rate analysis, and funding strategies</p>
+                <ul class="agent-features">
+                    <li>Cash flow modeling</li>
+                    <li>Fundraising guidance</li>
+                    <li>Budget optimization</li>
+                    <li>Valuation analysis</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <div class="agent-icon">🚀</div>
+                <h3>Growth Agent</h3>
+                <p>Execution-focused growth hacks and tactical implementation</p>
+                <ul class="agent-features">
+                    <li>Traction loops</li>
+                    <li>Channel optimization</li>
+                    <li>A/B testing</li>
+                    <li>Scaling playbooks</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works-container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Get started in minutes and have AI agents working for you immediately</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your account and onboard your business context in minutes</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure</h3>
+                    <p>Set goals and preferences for your AI co-founder team</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Collaborate</h3>
+                    <p>Chat with agents, get insights, and receive strategic guidance</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Execute</h3>
+                    <p>Implement recommendations and watch your business accelerate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Gallery -->
+    <section class="use-cases" id="use-cases">
+        <div class="section-title">
+            <h2>Real-World Use Cases</h2>
+            <p>Discover how founders like you are using CoFounderAI to transform their businesses</p>
+        </div>
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Early Stage Startups</h3>
+                    <p>Validate ideas, find market fit, and build traction without a team</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">📈</div>
+                    <h3>Growth Stage Companies</h3>
+                    <p>Scale operations, optimize channels, and drive revenue acceleration</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">🎓</div>
+                    <h3>Aspiring Founders</h3>
+                    <p>Get a co-founder's perspective on your business idea before launching</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">🌍</div>
+                    <h3>Geographic Expansion</h3>
+                    <p>Plan and execute market entry strategies for new regions</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">🔄</div>
+                    <h3>Pivot & Iteration</h3>
+                    <p>Analyze market signals and guide strategic pivots with data</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+            <div class="use-case-card">
+                <div>
+                    <div class="use-case-icon">💡</div>
+                    <h3>Innovation Planning</h3>
+                    <p>Explore new product opportunities and market adjacencies</p>
+                </div>
+                <span class="use-case-arrow">Learn more →</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="section-title">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Start with a free trial. No credit card required.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">$99</div>
+                    <div class="pricing-period">/month, billed monthly</div>
+                    <ul class="pricing-features">
+                        <li>3 AI Agents (Strategy, Analytics, Growth)</li>
+                        <li>100 monthly consultations</li>
+                        <li>Email support</li>
+                        <li>Basic reports</li>
+                    </ul>
+                    <button class="pricing-btn">Start Free Trial</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3 class="pricing-title">Professional</h3>
+                    <div class="pricing-price">$199</div>
+                    <div class="pricing-period">/month, billed monthly</div>
+                    <ul class="pricing-features">
+                        <li>All 5 AI Agents</li>
+                        <li>Unlimited consultations</li>
+                        <li>Priority support</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom integrations</li>
+                        <li>Quarterly strategy reviews</li>
+                    </ul>
+                    <button class="pricing-btn">Start Free Trial</button>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">Contact for pricing</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated AI agent team</li>
+                        <li>Unlimited everything</li>
+                        <li>24/7 phone support</li>
+                        <li>Custom training</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <button class="pricing-btn">Schedule Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Loved by Founders</h2>
+            <p>Real feedback from real founders who've transformed their business with CoFounderAI</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"CoFounderAI gave me the strategic insights I needed to raise our Series A. Worth every penny."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SJ</div>
+                    <div>
+                        <div class="testimonial-name">Sarah Johnson</div>
+                        <div class="testimonial-role">Founder & CEO, TechScale</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Like having a seasoned advisor in my pocket. The market analysis alone has saved me months of research."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MP</div>
+                    <div>
+                        <div class="testimonial-name">Marcus Patel</div>
+                        <div class="testimonial-role">CEO, DataViz Inc.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"As a solo founder, this has been a game-changer. The Finance Agent optimized our burn rate perfectly."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">EL</div>
+                    <div>
+                        <div class="testimonial-name">Elena Liu</div>
+                        <div class="testimonial-role">Founder, CloudServe</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The Growth Agent identified a channel we'd completely overlooked. 3x ROI in our first quarter."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">DK</div>
+                    <div>
+                        <div class="testimonial-name">David Kim</div>
+                        <div class="testimonial-role">Co-founder, RetailBot</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of founders who are already working with their AI co-founder. Start your free trial today—no credit card required.</p>
+            <button class="primary-btn" onclick="scrollToSection('pricing')">Start Free Trial Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CoFounderAI. All rights reserved. | <a href="#" style="color: var(--accent); text-decoration: none;">Privacy</a> | <a href="#" style="color: var(--accent); text-decoration: none;">Terms</a> | <a href="#" style="color: var(--accent); text-decoration: none;">Contact</a></p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.agent-card, .use-case-card, .testimonial-card, .pricing-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add keyframe animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
